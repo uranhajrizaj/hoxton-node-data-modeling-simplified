@@ -261,9 +261,9 @@ app.get("/employees",(req,res)=>{
 app.patch("/interviews/:id", (req, res) => {
   const findInterview = getinterview.get(req.params);
   if (findInterview) {
-    const findApplicant=applicant.get({id:req.body.applicantId})
+    const findApplicant=applicant.get({id: findInterview.applicantId})
      const updatedInterview = { ...findInterview, ...req.body };
-        if(req.body.result==='1'){
+        if(req.body.result===1){
             app.post("/employees",(req,res)=>{
              const newemployer={...findApplicant,"position":"Frontend developer","companyId":findInterview.companyId}
              createEmploye.run(newemployer)
